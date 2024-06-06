@@ -1,17 +1,33 @@
-﻿namespace ConsoleApp4
+﻿using System.Linq.Expressions;
+
+namespace ConsoleApp4
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int[,] firstArray = new int[3,3];
+            int[,] firstArray = { { 1, 2, 3 }, { 2, 3, 4 }, { 3, 4, 5 } };
             int[][] secondArray = new int[3][];
 
-            firstArray[0, 0] = 1;
-            firstArray[1, 0] = 2;
-            firstArray[2, 0] = 3;
-            firstArray[0, 1] = 2;
-            firstArray[1, 1] =
+            for (int i = 0; i < secondArray.Length; i++)
+            {
+                int[] newArray = new int[3 - i];
+
+                for (int j = 0; j < newArray.Length; j++)
+                {
+                    newArray[j] = firstArray[i, j + i];
+                }
+                secondArray[i] = newArray;
+            }
+
+            foreach (int[] el in secondArray)
+            {
+                foreach (int el2 in el)
+                {
+                    Console.WriteLine(el2);
+                }
+
+            }
 
         }
     }
